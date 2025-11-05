@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 struct node {
   int data;
@@ -387,7 +388,7 @@ void main() {
         scanf("%d", &value);
         printf("Enter the position at which value is to be inserted: ");
         scanf("%d", &pos);
-        size = size + insertatPos(head, value, pos, size);
+        size = size++;
       }
       break;
     case 13:
