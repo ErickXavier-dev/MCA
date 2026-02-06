@@ -1,0 +1,37 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Largest of 2 numbers</title>
+  <script>
+    function largest() {
+      var num1 = Number(document.getElementById("num1").value);
+      var num2 = Number(document.getElementById("num2").value);
+      if(num1>num2){
+        document.getElementById("result").value = num1;
+      } else {
+        document.getElementById("result").value = num2;
+      }
+    }
+    function clearAll(){
+      document.getElementById("num1").value = "";
+      document.getElementById("num2").value = "";
+      document.getElementById("result").value = "";
+      document.getElementById("num1").focus();
+    }
+  </script>
+</head>
+<body>
+  <h1>Find the Largest among 2 Numbers</h1>
+  <form>
+    <label for="num1">Number 1 :</label>
+    <input type="text" id="num1" name="num1"><br><br>
+    <label for="num2">Number 2 :</label>
+    <input type="text" id="num2" name="num2"><br><br>
+    <label for="result">Result :</label>
+    <input type="text" id="result" name="result" readonly><br><br>
+    <input type="button" value="Find" onclick="largest()">
+    <input type="button" value="Clear All" onclick="clearAll()">
+  </form>
+</body>
+</html>

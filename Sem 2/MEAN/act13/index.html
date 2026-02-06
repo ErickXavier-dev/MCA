@@ -1,0 +1,58 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add numbers</title>
+  <script>
+    function sum() {
+      var num1 = Number(document.getElementById("num1").value);
+      var num2 = Number(document.getElementById("num2").value);
+      document.getElementById("result").value = num1 + num2;
+    }
+    function diff() {
+      var num1 = Number(document.getElementById("num1").value);
+      var num2 = Number(document.getElementById("num2").value);
+      document.getElementById("result").value = num1 - num2;
+    }
+    function multiply() {
+      var num1 = Number(document.getElementById("num1").value);
+      var num2 = Number(document.getElementById("num2").value);
+      document.getElementById("result").value = num1 * num2;
+    }
+    function divide() {
+      var num1 = Number(document.getElementById("num1").value);
+      var num2 = Number(document.getElementById("num2").value);
+      document.getElementById("result").value = num1 / num2;
+    }
+    function mod() {
+      var num1 = Number(document.getElementById("num1").value);
+      var num2 = Number(document.getElementById("num2").value);
+      document.getElementById("result").value = num1 % num2;
+    }
+    function clearAll() {
+      document.getElementById("num1").value = "";
+      document.getElementById("num2").value = "";
+      document.getElementById("result").value = "";
+      document.getElementById("num1").focus();
+    }
+  </script>
+</head>
+<body>
+  <h1>Add Two Numbers</h1>
+  <form action="">
+    <label for="num1">Enter Number 1 :</label>
+    <input type="text" id="num1" name="num1"><br><br>
+    <label for="num2">Enter Number 2 :</label>
+    <input type="text" id="num2" name="num2"><br><br>
+    <label for="result">Result :</label>
+    <input type="text" id="result" name="result" readonly><br><br>
+    <!-- Buttons for operations -->
+    <input type="button" value="+" onclick="sum()">
+    <input type="button" value="-" onclick="diff()">
+    <input type="button" value="*" onclick="multiply()">
+    <input type="button" value="/" onclick="divide()">
+    <input type="button" value="%" onclick="mod()">
+    <input type="button" value="Clear All" onclick="clearAll()">
+  </form>
+</body>
+</html>

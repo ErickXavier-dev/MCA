@@ -1,0 +1,47 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Calculator</title>
+  <script>
+    function calculateTotal() {
+      var c = Number(document.getElementById("c").value);
+      var java = Number(document.getElementById("java").value);
+      var web = Number(document.getElementById("web").value);
+      var total = c + java + web;
+      var avg = total / 3;
+      document.getElementById("result").value = total;
+      document.getElementById("avg").value = avg;
+      if(avg >= 90) {
+        document.getElementById("grade").value = "A";
+      } else if(avg >= 80) {
+        document.getElementById("grade").value = "B";
+      } else if(avg >= 70) {
+        document.getElementById("grade").value = "C";
+      } else if(avg >= 60) {
+        document.getElementById("grade").value = "D";
+      } else {
+        document.getElementById("grade").value = "F";
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Student Calculator</h1>
+  <form>
+    <label for="c">C Programming</label>
+    <input type="text" id="c" name="c"><br><br>
+    <label for="java">Java Programming</label>
+    <input type="text" id="java" name="java"><br><br>
+    <label for="web">Web Development</label>
+    <input type="text" id="web" name="web"><br><br>
+    <label for="result">Result</label>
+    <input type="text" id="result" name="result" readonly><br><br>
+    <label for="avg">Average</label>
+    <input type="text" id="avg" name="avg" readonly><br><br>
+    <label for="grade">Grade</label>
+    <input type="text" id="grade" name="grade" readonly><br><br>
+    <input type="button" value="Calculate Total" onclick="calculateTotal()">
+  </form>
+</body>
+</html>

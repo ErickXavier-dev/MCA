@@ -1,0 +1,30 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>C to F</title>
+  <script>
+    function convert() {
+      var c = Number(document.getElementById("c").value);
+      var f = (c * 9/5) + 32;
+      document.getElementById("f").value = f;
+    }
+    function clearAll() {
+      document.getElementById("c").value = "";
+      document.getElementById("f").value = "";
+      document.getElementById("c").focus();
+    }
+  </script>
+</head>
+<body>
+  <h1>Convert Celsius to Fahrenheit</h1>
+  <form >
+    <label for="c">Celsius :</label>
+    <input type="text" id="c" name="c"><br><br>
+    <label for="f">Fahrenheit :</label>
+    <input type="text" id="f" name="f" readonly><br><br>
+    <input type="button" value="Convert" onclick="convert()">
+    <input type="button" value="Clear All" onclick="clearAll()">
+  </form>
+</body>
+</html>
