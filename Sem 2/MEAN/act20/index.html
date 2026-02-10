@@ -1,0 +1,24 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For In Loop Example</title>
+</head>
+<body>
+  <h1>Student Details</h1>
+  <span id="list"></span>
+  <script>
+    var student = {
+      name: "John Doe",
+      age: 20,
+      grade: "A"
+    };
+
+    var result = "";
+    for (var key in student) {
+      result += key + ": " + student[key] + "<br>";
+    }
+    document.getElementById("list").innerHTML = result;
+  </script>
+</body>
+</html>
