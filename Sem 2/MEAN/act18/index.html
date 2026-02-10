@@ -1,0 +1,26 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loop Example</title>
+  <script>
+    function printNumbers() {
+      var n = Number(document.getElementById("value").value);
+      var result = "";
+      var i = 1;
+      while (i <= n) {
+        result += i + " ";
+        i++;
+      }
+      document.getElementById("result").textContent = result;
+    }
+  </script>
+</head>
+<body>
+  <h1>Print Natural Numbers</h1>
+  <label for="value">Enter a Number: </label>
+  <input type="text" id="value" name="value" placeholder="Enter a Value">
+  <input type="button" value="Print" onclick="printNumbers()"><br><br>
+  <span id="result"></span>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URL Demo</title>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var currentUrl = window.location.href;
+      document.getElementById("current-url").textContent = currentUrl;
+    });
+  </script>
+</head>
+<body>
+  <h1>URL Demo</h1>
+  <p>Current URL: <span id="current-url"></span></p>
+</body>
+</html>

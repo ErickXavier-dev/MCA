@@ -1,0 +1,24 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For Loop Example</title>
+  <script>
+    function printMultiples() {
+      var n = Number(document.getElementById("multiple").value);
+      var result = "";
+      for (var i = 5; i <= n; i = i+5) {
+        result += i + " ";
+      }
+      document.getElementById("result").textContent = result;
+    }
+  </script>
+</head>
+<body>
+  <h1>Print Multiples of 5</h1>
+  <label for="multiple">Enter a Number: </label>
+  <input type="text" id="multiple" name="multiple" placeholder="Enter a Value">
+  <input type="button" value="Print" onclick="printMultiples()"><br><br>
+  <span id="result"></span>
+</body>
+</html>
