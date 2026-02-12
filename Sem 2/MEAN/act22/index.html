@@ -1,0 +1,25 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM Example</title>
+  <script>
+    function validateForm() {
+      var name = document.getElementById("name").value;
+      if (name === "") {
+        alert("Please fill in all fields.");
+        return false;
+      }
+      alert("Form submitted successfully!");
+      return true;
+    }
+  </script>
+</head>
+<body>
+  <form action="" onsubmit="return validateForm()">
+    <label for="name">Enter a value</label>
+    <input type="text" id="name" name="name">
+    <button type="submit">Submit</button>
+  </form>
+</body>
+</html>

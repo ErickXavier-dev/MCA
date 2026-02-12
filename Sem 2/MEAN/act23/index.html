@@ -1,0 +1,29 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Validation</title>
+  <script>
+    function validateForm() {
+      var value = Number(document.getElementById("value").value);
+      if(value>0 && value<11){
+        document.getElementById("message").style.color = "green";
+        document.getElementById("message").textContent = "Input OK";
+        return true;
+      } else {
+        document.getElementById("message").style.color = "red";
+        document.getElementById("message").textContent = "Input not OK";
+        return false;
+      }
+    }
+  </script>
+</head>
+<body>
+  <form action="" onsubmit="return validateForm()">
+    <label for="value">Enter a value:</label>
+    <input type="text" id="value" name="value" placeholder="Enter a number">
+    <button type="submit">Submit</button><br><br>
+    <span id="message" ></span>
+  </form>
+</body>
+</html>
