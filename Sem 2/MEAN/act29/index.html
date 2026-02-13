@@ -1,0 +1,75 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Management</title>
+  <script>
+    function addStudent() {
+      const name = document.getElementById("name").value;
+      const course = document.getElementById("course").value;
+
+      if (name && course) {
+        const tableBody = document.getElementById("studentTableBody");
+        const newRow = tableBody.insertRow();
+        const nameCell = newRow.insertCell(0);
+        const courseCell = newRow.insertCell(1);
+        nameCell.textContent = name;
+        courseCell.textContent = course;
+
+        // Clear the form fields
+        document.getElementById("studentForm").reset();
+      } else {
+        alert("Please fill in both fields.");
+      }
+    }
+    function searchStudent() {
+      const nameSearch = document.getElementById("namesearch").value.toLowerCase();
+      const tableBody = document.getElementById("studentTableBody");
+      const rows = tableBody.getElementsByTagName("tr");
+      let found = false;
+
+      for (let i = 0; i < rows.length; i++) {
+        const nameCell = rows[i].getElementsByTagName("td")[0];
+        if (nameCell) {
+          const nameText = nameCell.textContent.toLowerCase();
+          if (nameText === nameSearch) {
+            document.getElementById("serresult").innerHTML = `Name: ${nameCell.textContent} <br> Course: ${rows[i].getElementsByTagName("td")[1].textContent}`;
+            found = true;
+            break;
+          }
+        }
+      }
+
+      if (!found) {
+        document.getElementById("serresult").textContent = "Student not found.";
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Student Management System</h1>
+  <form id="studentForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required><br><br>
+    <label for="course">Course:</label>
+    <input type="text" id="course" name="course" required><br><br>
+    <input type="button" value="Add Student" onclick="addStudent()">
+  </form>
+  <h2>Search Student</h2>
+  <label for="namesearch">Name:</label>
+  <input type="text" id="namesearch" name="namesearch">
+  <input type="button" value="Search" onclick="searchStudent()"><br><br>
+  <label for="sresult">Search Result: <br><span id="serresult"></span></label>
+  <h2>Student List</h2>
+  <table border="1" style="width: 50%; text-align: left;">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Course</th>
+      </tr>
+    </thead>
+    <tbody id="studentTableBody">
+    </tbody>
+  </table>
+</body>
+</html>
