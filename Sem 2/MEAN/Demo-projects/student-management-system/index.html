@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#4F46E5', // Indigo 600
+                        secondary: '#10B981', // Emerald 500
+                        dark: '#1F2937', // Gray 800
+                        light: '#F3F4F6', // Gray 100
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans min-h-screen">
+
+    <div class="container mx-auto px-4 py-8 max-w-7xl">
+        <header class="mb-10 text-center">
+            <h1 class="text-4xl font-bold text-gray-900 mb-2 tracking-tight">Student Management System</h1>
+            <p class="text-gray-500">Manage student records efficiently</p>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <!-- Data Entry Module -->
+            <div class="lg:col-span-4">
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 sticky top-8">
+                    <div class="bg-primary px-6 py-4">
+                        <h2 class="text-white text-xl font-semibold flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                            </svg>
+                            <span id="form-title">Add New Student</span>
+                        </h2>
+                    </div>
+                    <form id="student-form" class="p-6 space-y-5">
+                        <input type="hidden" id="edit-index">
+                        
+                        <div>
+                            <label for="student-id" class="block text-sm font-medium text-gray-700 mb-1">Student ID</label>
+                            <input type="text" id="student-id" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition duration-200 outline-none" placeholder="e.g. S101" required>
+                            <p class="text-red-500 text-xs mt-1 hidden" id="id-error">ID must be unique</p>
+                        </div>
+
+                        <div>
+                            <label for="student-name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                            <input type="text" id="student-name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition duration-200 outline-none" placeholder="John Doe" required pattern="[A-Za-z\s]+">
+                        </div>
+
+                        <div>
+                            <label for="student-email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                            <input type="email" id="student-email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition duration-200 outline-none" placeholder="john@example.com" required>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label for="student-age" class="block text-sm font-medium text-gray-700 mb-1">Age</label>
+                                <input type="number" id="student-age" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition duration-200 outline-none" placeholder="20" min="15" max="100" required>
+                            </div>
+                            <div>
+                                <label for="student-course" class="block text-sm font-medium text-gray-700 mb-1">Course</label>
+                                <select id="student-course" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition duration-200 outline-none" required>
+                                    <option value="" disabled selected>Select</option>
+                                    <option value="Computer Science">Computer Science</option>
+                                    <option value="Information Tech">Information Tech</option>
+                                    <option value="Electronics">Electronics</option>
+                                    <option value="Mechanical">Mechanical</option>
+                                    <option value="Civil">Civil</option>
+                                    <option value="MBA">MBA</option>
+                                    <option value="MCA">MCA</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="pt-2 flex gap-3">
+                            <button type="submit" class="flex-1 bg-primary hover:bg-indigo-700 text-white font-semibold py-2.5 px-4 rounded-lg shadow transition duration-200 flex justify-center items-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+                                </svg>
+                                <span id="submit-btn-text">Add Student</span>
+                            </button>
+                            <button type="button" id="cancel-edit" class="hidden flex-none bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2.5 px-4 rounded-lg transition duration-200">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Data Display & Search Module -->
+            <div class="lg:col-span-8">
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100 flex flex-col h-full">
+                    
+                    <!-- Search Module -->
+                    <div class="p-6 border-b border-gray-100 bg-gray-50/50 flex flex-col sm:flex-row justify-between items-center gap-4">
+                        <div class="relative w-full sm:w-72">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <input type="text" id="search-input" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-primary focus:border-primary sm:text-sm transition duration-150 ease-in-out" placeholder="Search by ID or Name...">
+                        </div>
+                        <div class="text-sm text-gray-500">
+                            Total Students: <span id="total-count" class="font-bold text-gray-900">0</span>
+                        </div>
+                    </div>
+
+                    <!-- Table Data Display -->
+                    <div class="overflow-x-auto flex-grow">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Age</th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Course</th>
+                                    <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="student-table-body" class="bg-white divide-y divide-gray-200">
+                                <!-- Dynamic Content -->
+                            </tbody>
+                        </table>
+                        <div id="no-records" class="hidden flex flex-col items-center justify-center py-12 text-gray-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mb-3 opacity-50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <p>No students found matching your search.</p>
+                        </div>
+                        <div id="empty-state" class="hidden flex flex-col items-center justify-center py-16 text-gray-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mb-4 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                            </svg>
+                            <h3 class="text-lg font-medium text-gray-900 mb-1">No students yet</h3>
+                            <p class="text-sm text-gray-500">Get started by adding a new student to the system.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-5 right-5 transform translate-y-20 opacity-0 transition-all duration-300 z-50">
+        <div class="bg-gray-800 text-white px-6 py-3 rounded-lg shadow-lg flex items-center gap-3">
+            <span id="toast-icon"></span>
+            <span id="toast-message">Notification message</span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
