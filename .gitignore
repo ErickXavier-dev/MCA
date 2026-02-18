@@ -4,3 +4,4 @@
 O365L.html
 *.txt
 .\Sem 1\DSA\*.md
+*\node_modules
