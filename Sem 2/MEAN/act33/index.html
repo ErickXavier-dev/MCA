@@ -1,0 +1,46 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doctor Appoinment Form</title>
+</head>
+<body>
+  <form action="submit.php" method="post">
+    <h1>Doctor Appoinment Form</h1>
+    <label for="date">Appoinment Date:</label><br>
+    <input type="date" id="date" name="date" required><br><br>
+
+    <label for="time">Appoinment Time:</label><br>
+    <input type="time" id="time" name="time" required><br><br>
+
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name" placeholder="First Name" required>
+    <input type="text" name="lastname" id="lastname" placeholder="Last Name" required><br><br>
+
+    <label for="gender">Gender:</label><br>
+    <input type="radio" id="male" name="gender" value="male" required>
+    <label for="male">Male</label><br>
+    <input type="radio" id="female" name="gender" value="female" required>
+    <label for="female">Female</label><br><br>
+
+    <label for="address">Address:</label>
+    <input type="text" id="city" name="city" placeholder="City" required>
+    <input type="text" id="state" name="state" placeholder="State" required><br><br>
+
+    <label for="query">Query:</label><br>
+    <textarea id="query" name="query" placeholder="Enter your query here"></textarea><br><br>
+
+    <label for="type">Type of Appointment:      Select the type of appoinment</label><br>
+    <input type="checkbox" name="cc" id="cc">
+    <label for="cc">Cervix checkup</label><br>
+    <input type="checkbox" name="heart" id="heart">
+    <label for="heart">Heart checkup</label><br>
+    <input type="checkbox" name="eye" id="eye">
+    <label for="eye">Eye check-up</label><br>
+    <input type="checkbox" name="hearing" id="hearing">
+    <label for="hearing">Hearing Test</label><br><br>
+
+    <input type="submit" value="Submit">
+  </form>
+</body>
+</html>
