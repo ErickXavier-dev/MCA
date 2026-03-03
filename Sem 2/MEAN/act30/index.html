@@ -1,34 +1,97 @@
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Registration</title>
+  <title>Registration Form</title>
   <script>
     function validateForm() {
-      const name = document.getElementById("name").value;
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-
-      if (!name || !email || (!password || password.length < 7)) {
-        alert("Please fill in all fields and ensure the password is at least 7 characters long.");
-        return false;
+      // Clear previous messages
+      document.getElementById("nameError").innerHTML = "";
+      document.getElementById("emailError").innerHTML = "";
+      document.getElementById("passwordError").innerHTML = "";
+      document.getElementById("confirmError").innerHTML = "";
+      document.getElementById("success").innerHTML = "";
+      var name = document.getElementById("name").value.trim();
+      var email = document.getElementById("email").value.trim();
+      var password = document.getElementById("password").value;
+      var confirmPassword = document.getElementById("confirmPassword").value;
+      var valid = true;
+      // Name validation
+      if (name === "") {
+        document.getElementById("nameError").innerHTML = "Name is required.";
+        valid = false;
       }
-      document.getElementById("status").textContent = "Registration successful!";
-      return true;
+      // Email validation
+      var emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+      if (email === "") {
+        document.getElementById("emailError").innerHTML = "Email is required.";
+        valid = false;
+      } else if (!emailPattern.test(email)) {
+        document.getElementById("emailError").innerHTML = "Enter valid email address.";
+        valid = false;
+      }
+      // Password validation
+      if (password === "") {
+        document.getElementById("passwordError").innerHTML = "Password is required.";
+        valid = false;
+      } else if (password.length < 7) {
+        document.getElementById("passwordError").innerHTML = "Password must be at least 7 characters.";
+        valid = false;
+      }
+      // Confirm password
+      if (confirmPassword === "") {
+        document.getElementById("confirmError").innerHTML = "Confirm your password.";
+        valid = false;
+      } else if (password !== confirmPassword) {
+        document.getElementById("confirmError").innerHTML = "Passwords do not match.";
+        valid = false;
+      }
+      if (valid) {
+        document.getElementById("success").innerHTML = "Registration Successful!";
+      }
+      return false; // prevent actual form submission
     }
   </script>
 </head>
 <body>
-  <form>
-    <h1>Registration Form</h1>
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required><br><br>
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required><br><br>
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required><br><br>
-    <input type="button" onclick="validateForm()" value="Register">
-    <span id="status"></span>
+  <h2>Registration Form</h2>
+  <form onsubmit="return validateForm()">
+    <table cellpadding="5">
+      <tr>
+        <td>Name:</td>
+        <td>
+          <input type="text" id="name">
+          <div id="nameError"></div>
+        </td>
+      </tr>
+      <tr>
+        <td>Email:</td>
+        <td>
+          <input type="text" id="email">
+          <div id="emailError"></div>
+        </td>
+      </tr>
+      <tr>
+        <td>Password:</td>
+        <td>
+          <input type="password" id="password">
+          <div id="passwordError"></div>
+        </td>
+      </tr>
+      <tr>
+        <td>Confirm Password:</td>
+        <td>
+          <input type="password" id="confirmPassword">
+          <div id="confirmError"></div>
+        </td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>
+          <input type="submit" value="Register">
+        </td>
+      </tr>
+    </table>
   </form>
+  <div id="success"></div>
 </body>
 </html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mark-Sheet Calculator</title>
+</head>
+<body>
+<center>
+  <h2>Mark-Sheet Calculator</h2>
+  <table border="1" cellpadding="10" cellspacing="0" width="600">
+    <tr>
+      <td>Hindi</td>
+      <td>
+        <input type="number" id="hindi" max="100"> (Max : 100)
+      </td>
+    </tr>
+    <tr>
+      <td>English</td>
+      <td>
+        <input type="number" id="english" max="100"> (Max : 100)
+      </td>
+    </tr>
+    <tr>
+      <td>Maths</td>
+      <td>
+        <input type="number" id="maths" max="100"> (Max : 100)
+      </td>
+    </tr>
+    <tr>
+      <td>Science</td>
+      <td>
+        <input type="number" id="science" max="100"> (Max : 100)
+      </td>
+    </tr>
+    <tr>
+      <td>Art</td>
+      <td>
+        <input type="number" id="art" max="100"> (Max : 100)
+      </td>
+    </tr>
+    <tr>
+      <td>Computer</td>
+      <td>
+        <input type="number" id="computer" max="100"> (Max : 100)
+      </td>
+    </tr>
+    <tr>
+      <td>Total</td>
+      <td>
+        <input type="text" id="total" readonly>
+      </td>
+    </tr>
+    <tr>
+      <td>Percentage</td>
+      <td>
+        <input type="text" id="percentage" readonly>
+      </td>
+    </tr>
+    <tr>
+      <td>Grade</td>
+      <td>
+        <input type="text" id="grade" readonly size="30">
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center">
+        <input type="button" value="Calculate" onclick="calculateMarks()">
+      </td>
+    </tr>
+  </table>
+</center>
+
+<script>
+function calculateMarks() {
+  var h = Number(document.getElementById("hindi").value) || 0;
+  var e = Number(document.getElementById("english").value) || 0;
+  var m = Number(document.getElementById("maths").value) || 0;
+  var s = Number(document.getElementById("science").value) || 0;
+  var a = Number(document.getElementById("art").value) || 0;
+  var c = Number(document.getElementById("computer").value) || 0;
+  var total = h + e + m + s + a + c;
+  var percentage = total / 6;
+  var grade;
+  if (percentage >= 90) {
+    grade = "A+";
+  } else if (percentage >= 80) {
+    grade = "A";
+  } else if (percentage >= 70) {
+    grade = "B";
+  } else if (percentage >= 60) {
+    grade = "C";
+  } else if (percentage >= 50) {
+    grade = "D";
+  } else {
+    grade = "Fail";
+  }
+  document.getElementById("total").value = total;
+  document.getElementById("percentage").value = percentage.toFixed(2) + "%";
+  document.getElementById("grade").value = grade;
+}
+</script>
+
+</body>
+</html>
