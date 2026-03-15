@@ -7,3 +7,6 @@ O365L.html
 *\node_modules
 package-lock.json
 package.json
+*.jpg
+*.md
+License
