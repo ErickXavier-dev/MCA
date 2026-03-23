@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Voting Eligibility Checker</title>
+  <script>
+    function checkEligibility() {
+      // Clear previous result
+      document.getElementById("result").innerHTML = "";
+      var name = document.getElementById("name").value.trim();
+      var age = document.getElementById("age").value;
+      if (name === "" || age === "") {
+        document.getElementById("result").innerHTML = "Please fill all fields.";
+        return false;
+      }
+      age = parseInt(age);
+      if (age >= 18) {
+        document.getElementById("result").innerHTML = name + " is eligible to vote.";
+      } else {
+        document.getElementById("result").innerHTML = name + " is not eligible to vote.";
+      }
+      return false; // Prevent form submission
+    }
+  </script>
+</head>
+<body>
+  <h2>Voting Eligibility Checker</h2>
+  <form onsubmit="return checkEligibility()">
+    <table cellpadding="5">
+      <tr>
+        <td>Name:</td>
+        <td><input type="text" id="name"></td>
+      </tr>
+      <tr>
+        <td>Age:</td>
+        <td><input type="number" id="age"></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td><input type="submit" value="Check Eligibility"></td>
+      </tr>
+    </table>
+  </form>
+  <br>
+  <div id="result"></div>
+</body>
+</html>

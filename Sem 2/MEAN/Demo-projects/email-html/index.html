@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Security Notification – Credential Expiry</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+</head>
+<body style="margin:0;padding:0;font-family:'IBM Plex Sans',Helvetica,sans-serif;">
+
+<!-- ============================================================ -->
+<!-- BLOCK 1: html_header — ALWAYS INCLUDE — copy everything below -->
+<!-- HEADER_START -->
+<table width="100%" cellpadding="0" cellspacing="0" border="0" style="padding:40px 16px;">
+  <tr>
+    <td align="center">
+      <table width="660" cellpadding="0" cellspacing="0" border="0" style="background-color:#ffffff;border:1px solid #c8cdd4;border-top:4px solid #0078d4;">
+
+        <!-- HEADER BAR -->
+        <tr>
+          <td style="padding:26px 40px 22px 40px;border-bottom:2px solid #0078d4;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="vertical-align:middle;">
+                  <span style="display:inline-block;vertical-align:middle;margin-right:10px;line-height:0;">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg" alt="azure_logo" type="image/svg+xml" width="32" height="32" style="display:block;">
+                  </span>
+                  <span style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#0078d4;vertical-align:middle;">Microsoft Azure</span>
+                  <span style="font-size:12px;color:#d1d5db;margin:0 8px;vertical-align:middle;">|</span>
+                  <span style="font-size:12px;font-weight:400;letter-spacing:1px;text-transform:uppercase;color:#6b7280;vertical-align:middle;">App Registrations &middot; Security</span>
+                </td>
+                <td align="right" style="vertical-align:middle;">
+                  <span style="font-size:11px;color:#9ca3af;letter-spacing:0.5px;font-family:'IBM Plex Mono',monospace;">AZ-SEC-@{formatDateTime(utcNow(),'yyyyMMdd')}</span>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- CLASSIFICATION BAND -->
+        <tr>
+          <td style="background-color:#fff4e5;border-bottom:1px solid #f59e0b;padding:8px 40px;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td><span style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#b45309;">&#x2691;&nbsp;&nbsp;Classification: Internal &middot; Action Required</span></td>
+                <td align="right"><span style="font-size:11px;color:#b45309;font-weight:600;">Priority: HIGH</span></td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- SUBJECT -->
+        <tr>
+          <td style="padding:32px 40px 24px 40px;border-bottom:1px solid #e5e7eb;">
+            <p style="margin:0 0 6px 0;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#9ca3af;">Subject</p>
+            <h1 style="margin:0 0 12px 0;font-size:19px;font-weight:600;color:#111827;line-height:1.4;">
+              Credential Expiry Notice &mdash; Azure App Registration
+            </h1>
+            <p style="margin:0;font-size:13.5px;color:#4b5563;line-height:1.75;">
+              This is a formal notification that one or more <strong style="color:#111827;">credentials</strong> bound to an Azure App Registration
+              in your tenant are approaching their expiry date. Immediate action is required to prevent
+              <strong style="color:#111827;">authentication failures</strong> and disruption to dependent services.
+            </p>
+          </td>
+        </tr>
+
+        <!-- META ROW -->
+        <tr>
+          <td style="border-bottom:1px solid #e5e7eb;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td width="33%" style="padding:13px 40px;border-right:1px solid #e5e7eb;">
+                  <p style="margin:0 0 2px 0;font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#9ca3af;">Date Issued</p>
+                  <p style="margin:0;font-size:13px;color:#374151;font-weight:500;">@{formatDateTime(utcNow(),'dd MMMM yyyy')}</p>
+                </td>
+                <td width="33%" style="padding:13px 24px;border-right:1px solid #e5e7eb;">
+                  <p style="margin:0 0 2px 0;font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#9ca3af;">Issued By</p>
+                  <p style="margin:0;font-size:13px;color:#374151;font-weight:500;">CFR Security Monitor &middot; Automated Alert</p>
+                </td>
+                <td width="34%" style="padding:13px 24px;">
+                  <p style="margin:0 0 2px 0;font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#9ca3af;">Directed To</p>
+                  <p style="margin:0;font-size:13px;color:#374151;font-weight:500;">Application Owner / ICTS Admin</p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- AFFECTED CREDENTIALS LABEL -->
+        <tr>
+          <td style="padding:28px 40px 14px 40px;">
+            <p style="margin:0;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#374151;">Affected Credentials</p>
+          </td>
+        </tr>
+<!-- HEADER_END -->
+<!-- ============================================================ -->
+
+
+<!-- ============================================================ -->
+<!-- BLOCK 2: html_secrets — CONDITIONAL — only include if secrets are expiring -->
+<!-- In your flow: initialize html_secrets = SECRET_SECTION_OPEN (below)       -->
+<!-- Then append a SECRET_ROW for each expiring secret                          -->
+<!-- Then append SECRET_SECTION_CLOSE before injecting into the final body      -->
+<!-- SECRET_SECTION_OPEN -->
+        <tr>
+          <td style="padding:0 40px 6px 40px;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="padding:9px 16px;background-color:#eff6ff;border:1px solid #bfdbfe;border-bottom:none;">
+                  <table width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+                    <td><span style="font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#1d4ed8;">&#x1F511;&nbsp; Client Secrets</span></td>
+                    <td align="right"><span style="font-size:10px;font-weight:600;color:#1d4ed8;letter-spacing:0.5px;">passwordCredentials</span></td>
+                  </tr></table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:0 40px 28px 40px;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border:1px solid #bfdbfe;border-collapse:collapse;">
+              <tr style="background-color:#f0f7ff;">
+                <td style="padding:9px 14px;font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#6b7280;border-bottom:1px solid #bfdbfe;border-right:1px solid #bfdbfe;width:20%;">App ID</td>
+                <td style="padding:9px 14px;font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#6b7280;border-bottom:1px solid #bfdbfe;border-right:1px solid #bfdbfe;width:18%;">Display Name</td>
+                <td style="padding:9px 14px;font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#6b7280;border-bottom:1px solid #bfdbfe;border-right:1px solid #bfdbfe;width:22%;">Key ID</td>
+                <td style="padding:9px 14px;font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#6b7280;border-bottom:1px solid #bfdbfe;border-right:1px solid #bfdbfe;width:12%;">Days Left</td>
+                <td style="padding:9px 14px;font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#6b7280;border-bottom:1px solid #bfdbfe;width:14%;">Expiry Date</td>
+              </tr>
+              <!-- SECRET_ROW — append one of these per expiring secret in your Logic App -->
+              <!-- RED row   (< 15 days):  use background-color:#fef2f2 on Days Left cell + color:#dc2626;font-weight:700 -->
+              <!-- YELLOW row (< 30 days):  use background-color:#fffbeb on Days Left cell + color:#b45309;font-weight:700 -->
+              <!-- NORMAL row (≥ 30 days):  use background-color:#ffffff on Days Left cell + color:#374151 -->
+              <tr style="border-top:1px solid #dbeafe;">
+                <td style="padding:11px 14px;font-size:11px;color:#1d4ed8;font-family:'IBM Plex Mono',monospace;border-right:1px solid #dbeafe;"><a href="https://ms.portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/Credentials/appId/@{variables('AppID')}/isMSAApp/" style="color:#1d4ed8;text-decoration:none;">@{variables('AppID')}</a></td>
+                <td style="padding:11px 14px;font-size:12px;color:#111827;font-weight:500;border-right:1px solid #dbeafe;">@{variables('displayName')}</td>
+                <td style="padding:11px 14px;font-size:11px;color:#374151;font-family:'IBM Plex Mono',monospace;border-right:1px solid #dbeafe;">@{items('For_each_-_PasswordCred')?['keyId']}</td>
+                <td style="padding:11px 14px;font-size:12px;font-weight:700;border-right:1px solid #dbeafe;background-color:@{if(less(variables('daysTilExpiration'),15),'#fef2f2',if(less(variables('daysTilExpiration'),30),'#fffbeb','#ffffff'))};color:@{if(less(variables('daysTilExpiration'),15),'#dc2626',if(less(variables('daysTilExpiration'),30),'#b45309','#374151'))};">@{variables('daysTilExpiration')} days</td>
+                <td style="padding:11px 14px;font-size:11px;color:#374151;font-family:'IBM Plex Mono',monospace;">@{formatDateTime(items('For_each_-_PasswordCred')?['endDateTime'],'dd MMM yyyy')}</td>
+              </tr>
+              <!-- /SECRET_ROW -->
+            </table>
+          </td>
+        </tr>
+<!-- SECRET_SECTION_CLOSE — end of html_secrets variable -->
+<!-- ============================================================ -->
+
+
+<!-- ============================================================ -->
+<!-- BLOCK 3: html_certs — CONDITIONAL — only include if certificates are expiring -->
+<!-- In your flow: initialize html_certs = CERT_SECTION_OPEN (below)             -->
+<!-- Then append a CERT_ROW for each expiring certificate                         -->
+<!-- Then append CERT_SECTION_CLOSE before injecting into the final body          -->
+<!-- CERT_SECTION_OPEN -->
+        <tr>
+          <td style="padding:0 40px 6px 40px;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="padding:9px 16px;background-color:#f0fdf4;border:1px solid #86efac;border-bottom:none;">
+                  <table width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
+                    <td><span style="font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#15803d;">&#x1F4DC;&nbsp; Certificates</span></td>
+                    <td align="right"><span style="font-size:10px;font-weight:600;color:#15803d;letter-spacing:0.5px;">keyCredentials</span></td>
+                  </tr></table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:0 40px 28px 40px;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border:1px solid #86efac;border-collapse:collapse;">
+              <tr style="background-color:#f0fdf4;">
+                <td style="padding:9px 14px;font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#6b7280;border-bottom:1px solid #86efac;border-right:1px solid #86efac;width:20%;">App ID</td>
+                <td style="padding:9px 14px;font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#6b7280;border-bottom:1px solid #86efac;border-right:1px solid #86efac;width:18%;">Display Name</td>
+                <td style="padding:9px 14px;font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#6b7280;border-bottom:1px solid #86efac;border-right:1px solid #86efac;width:22%;">Key ID</td>
+                <td style="padding:9px 14px;font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#6b7280;border-bottom:1px solid #86efac;border-right:1px solid #86efac;width:12%;">Days Left</td>
+                <td style="padding:9px 14px;font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#6b7280;border-bottom:1px solid #86efac;width:14%;">Expiry Date</td>
+              </tr>
+              <!-- CERT_ROW — append one of these per expiring certificate in your Logic App -->
+              <tr style="border-top:1px solid #dcfce7;">
+                <td style="padding:11px 14px;font-size:11px;color:#15803d;font-family:'IBM Plex Mono',monospace;border-right:1px solid #dcfce7;"><a href="https://ms.portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationMenuBlade/Credentials/appId/@{variables('AppID')}/isMSAApp/" style="color:#15803d;text-decoration:none;">@{variables('AppID')}</a></td>
+                <td style="padding:11px 14px;font-size:12px;color:#111827;font-weight:500;border-right:1px solid #dcfce7;">@{variables('displayName')}</td>
+                <td style="padding:11px 14px;font-size:11px;color:#374151;font-family:'IBM Plex Mono',monospace;border-right:1px solid #dcfce7;">@{items('For_each_KeyCred')?['keyId']}</td>
+                <td style="padding:11px 14px;font-size:12px;font-weight:700;border-right:1px solid #dcfce7;background-color:@{if(less(variables('daysTilExpiration'),15),'#fef2f2',if(less(variables('daysTilExpiration'),30),'#fffbeb','#ffffff'))};color:@{if(less(variables('daysTilExpiration'),15),'#dc2626',if(less(variables('daysTilExpiration'),30),'#b45309','#374151'))};">@{variables('daysTilExpiration')} days</td>
+                <td style="padding:11px 14px;font-size:11px;color:#374151;font-family:'IBM Plex Mono',monospace;">@{formatDateTime(items('For_each_KeyCred')?['endDateTime'],'dd MMM yyyy')}</td>
+              </tr>
+              <!-- /CERT_ROW -->
+            </table>
+          </td>
+        </tr>
+<!-- CERT_SECTION_CLOSE — end of html_certs variable -->
+<!-- ============================================================ -->
+
+
+<!-- ============================================================ -->
+<!-- BLOCK 4: html_footer — ALWAYS INCLUDE -->
+<!-- FOOTER_START -->
+        <!-- IMPACT NOTE -->
+        <tr>
+          <td style="padding:0 40px 28px 40px;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-left:3px solid #dc2626;">
+              <tr>
+                <td style="padding:14px 18px;background-color:#fef9f9;">
+                  <p style="margin:0 0 6px 0;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#dc2626;">Impact if Not Renewed</p>
+                  <p style="margin:0;font-size:13px;color:#374151;line-height:1.75;">Upon expiry, all services using this credential will receive <strong style="color:#111827;">401 Unauthorized</strong> responses. This includes API calls, daemon processes, background jobs, and CI/CD pipelines. Downstream services may experience cascading failures.</p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- REMEDIATION STEPS -->
+        <tr>
+          <td style="padding:0 40px 14px 40px;border-top:1px solid #e5e7eb;">
+            <p style="margin:22px 0 14px 0;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#374151;">Required Remediation Steps</p>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding:0 40px 8px 40px;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td width="36" valign="top"><span style="display:inline-block;width:22px;height:22px;background-color:#0078d4;color:#fff;font-size:11px;font-weight:700;text-align:center;line-height:22px;">1</span></td>
+                <td style="padding-left:12px;padding-bottom:14px;">
+                  <p style="margin:0 0 2px 0;font-size:13px;font-weight:600;color:#111827;">Open Azure Active Directory</p>
+                  <p style="margin:0;font-size:13px;color:#6b7280;line-height:1.6;">Navigate to <span style="font-family:'IBM Plex Mono',monospace;background:#f3f4f6;font-size:12px;padding:1px 6px;border:1px solid #e5e7eb;">portal.azure.com</span> &rarr; Azure AD &rarr; App Registrations &rarr; All Applications.</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="36" valign="top"><span style="display:inline-block;width:22px;height:22px;background-color:#0078d4;color:#fff;font-size:11px;font-weight:700;text-align:center;line-height:22px;">2</span></td>
+                <td style="padding-left:12px;padding-bottom:14px;">
+                  <p style="margin:0 0 2px 0;font-size:13px;font-weight:600;color:#111827;">Select the Application &amp; Open Certificates &amp; Secrets</p>
+                  <p style="margin:0;font-size:13px;color:#6b7280;line-height:1.6;">Find the relevant application and navigate to the <strong style="color:#374151;">Certificates &amp; Secrets</strong> blade.</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="36" valign="top"><span style="display:inline-block;width:22px;height:22px;background-color:#0078d4;color:#fff;font-size:11px;font-weight:700;text-align:center;line-height:22px;">3</span></td>
+                <td style="padding-left:12px;padding-bottom:14px;">
+                  <p style="margin:0 0 2px 0;font-size:13px;font-weight:600;color:#111827;">Generate New Credential</p>
+                  <p style="margin:0;font-size:13px;color:#6b7280;line-height:1.6;">Add a <strong style="color:#374151;">+ New client secret</strong> or upload a new certificate. <strong style="color:#dc2626;">Copy the secret value immediately</strong> — it will not be shown again.</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="36" valign="top"><span style="display:inline-block;width:22px;height:22px;background-color:#0078d4;color:#fff;font-size:11px;font-weight:700;text-align:center;line-height:22px;">4</span></td>
+                <td style="padding-left:12px;padding-bottom:14px;">
+                  <p style="margin:0 0 2px 0;font-size:13px;font-weight:600;color:#111827;">Update Dependent Systems</p>
+                  <p style="margin:0;font-size:13px;color:#6b7280;line-height:1.6;">Rotate the credential in all consuming services — Key Vault references, config files, CI/CD pipelines, and environment variables — before the expiry date.</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="36" valign="top"><span style="display:inline-block;width:22px;height:22px;background-color:#0078d4;color:#fff;font-size:11px;font-weight:700;text-align:center;line-height:22px;">5</span></td>
+                <td style="padding-left:12px;">
+                  <p style="margin:0 0 2px 0;font-size:13px;font-weight:600;color:#111827;">Validate &amp; Remove Old Credential</p>
+                  <p style="margin:0;font-size:13px;color:#6b7280;line-height:1.6;">Confirm services authenticate successfully, then delete the expiring credential to maintain a clean, auditable inventory.</p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- CTA -->
+        <tr>
+          <td style="padding:22px 40px 28px 40px;">
+            <a href="https://portal.azure.com/#view/Microsoft_AAD_RegisteredApps/ApplicationsListBlade"
+               style="display:inline-block;background-color:#0078d4;color:#ffffff;font-size:13px;font-weight:600;text-decoration:none;padding:11px 26px;letter-spacing:0.5px;margin-right:10px;">Open Azure Portal</a>
+            <a href="https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal"
+               style="display:inline-block;background-color:#ffffff;border:1px solid #0078d4;color:#0078d4;font-size:13px;font-weight:600;text-decoration:none;padding:11px 26px;letter-spacing:0.5px;">Microsoft Documentation</a>
+          </td>
+        </tr>
+
+        <!-- FOOTER -->
+        <tr>
+          <td style="border-top:2px solid #e5e7eb;padding:18px 40px;background-color:#f9fafb;">
+            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td>
+                  <p style="margin:0 0 2px 0;font-size:11px;color:#9ca3af;line-height:1.6;">This message was generated automatically by the CFR Infrastructure Security Monitoring system. Do not reply to this email.</p>
+                  <p style="margin:0;font-size:11px;color:#9ca3af;">For queries, contact your ICTS Administrator.</p>
+                </td>
+                <td align="right" valign="top" style="white-space:nowrap;padding-left:20px;">
+                  <p style="margin:0;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#d1d5db;">CONFIDENTIAL</p>
+                  <p style="margin:3px 0 0 0;font-size:10px;color:#d1d5db;letter-spacing:0.5px;">INTERNAL USE ONLY</p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr><td style="background-color:#0078d4;height:3px;font-size:0;line-height:0;">&nbsp;</td></tr>
+
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- FOOTER_END -->
+<!-- ============================================================ -->
+
+</body>
+</html>
